@@ -56,41 +56,93 @@
 			
 		<h3>Determining the ideal locations for Protected Habitats of the Riparian Woodrat</h3>
 			<p>As part of a university GIS course, I was tasked with finding the ideal habitat for the Riparian Woodrat within a region of California forest, in order to earmark ideal regions for protection.  In order to do this, I conducted a site suitability analysis for the riparian woodrat, using known factors about its desired habitat location, similar to the above flammulated owl site suitability analysis.  To better allow for easy modification, visualization, and reproduction of the final model, the model was built in ModelBuilder.  The final produced map, as well as the ModelBuilder workflow used for said map, are included below.</p>
-			<a href="https://imgur.com/kBMEqDW"><img src="https://i.imgur.com/kBMEqDW.jpg" title="Site Suitability Map" /></a>
-			<a href="https://imgur.com/cyW7wkL"><img src="https://i.imgur.com/cyW7wkL.jpg" title="ModelBuilder Visual Model" /></a> <!-- Update image?  Higher res may be good to make processes readable --> <!-- Figure out different image viewing methods -->
 			
-			 <!-- Trigger the Modal -->
-				<img id="myImg" src="https://i.imgur.com/kBMEqDW.jpg" alt="Riparian Woodrat Protected Areas: High Priority Locations" style="width:100%;max-width:300px">
-			<!-- Modal -->
-			<div id="myModal02" class="modal">
+			 <!-- Images used to open the lightbox -->
+			<div class="row">
+			  <div class="column">
+				<img src="https://i.imgur.com/kBMEqDW.jpg" onclick="openModal();currentSlide(1)" class="hover-shadow">
+			  </div>
+			  <div class="column">
+				<img src="https://i.imgur.com/cyW7wkL.jpg" onclick="openModal();currentSlide(2)" class="hover-shadow">
+			  </div>
+			</div>
 
-				<span class="close">&times;</span>
+			<!-- The Modal/Lightbox -->
+			<div id="myModal" class="modal">
+			  <span class="close cursor" onclick="closeModal()">&times;</span>
+			  <div class="modal-content">
 
-				<img class="modal-content" id="img02">
+				<div class="mySlides">
+				  <div class="numbertext">1 / 2</div>
+				  <img src="https://i.imgur.com/kBMEqDW.jpg" style="width:100%">
+				</div>
 
-				<div id="caption"></div>
+				<div class="mySlides">
+				  <div class="numbertext">2 / 2</div>
+				  <img src="https://i.imgur.com/cyW7wkL.jpg" style="width:100%">
+				</div>
+
+				<!-- Next/previous controls -->
+				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+				<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+				<!-- Caption text -->
+				<div class="caption-container">
+				  <p id="caption"></p>
+				</div>
+
+				<!-- Thumbnail image controls -->
+				<div class="column">
+				  <img class="demo" src="https://i.imgur.com/kBMEqDW.jpg" onclick="currentSlide(1)" alt="Nature">
+				</div>
+
+				<div class="column">
+				  <img class="demo" src="https://i.imgur.com/cyW7wkL.jpg" onclick="currentSlide(2)" alt="Snow">
+				</div>
+
+			  </div>
 			</div> 
 			
 			<script>
-				// Get the modal
-				var modal = document.getElementById('myModal02');
-
-				// Get the image and insert it inside the modal - use its "alt" text as a caption
-				var img = document.getElementById('myImg');
-				var modalImg = document.getElementById("img02");
-				var captionText = document.getElementById("caption");
-				img.onclick = function(){
-				  modal.style.display = "block";
-				  modalImg.src = this.src;
-				  captionText.innerHTML = this.alt;
+				// Open the Modal
+				function openModal() {
+				  document.getElementById('myModal').style.display = "block";
 				}
 
-				// Get the <span> element that closes the modal
-				var span = document.getElementsByClassName("close")[0];
+				// Close the Modal
+				function closeModal() {
+				  document.getElementById('myModal').style.display = "none";
+				}
 
-				// When the user clicks on <span> (x), close the modal
-				span.onclick = function() {
-				  modal.style.display = "none";
+				var slideIndex = 1;
+				showSlides(slideIndex);
+
+				// Next/previous controls
+				function plusSlides(n) {
+				  showSlides(slideIndex += n);
+				}
+
+				// Thumbnail image controls
+				function currentSlide(n) {
+				  showSlides(slideIndex = n);
+				}
+
+				function showSlides(n) {
+				  var i;
+				  var slides = document.getElementsByClassName("mySlides");
+				  var dots = document.getElementsByClassName("demo");
+				  var captionText = document.getElementById("caption");
+				  if (n > slides.length) {slideIndex = 1}
+				  if (n < 1) {slideIndex = slides.length}
+				  for (i = 0; i < slides.length; i++) {
+					slides[i].style.display = "none";
+				  }
+				  for (i = 0; i < dots.length; i++) {
+					dots[i].className = dots[i].className.replace(" active", "");
+				  }
+				  slides[slideIndex-1].style.display = "block";
+				  dots[slideIndex-1].className += " active";
+				  captionText.innerHTML = dots[slideIndex-1].alt;
 				}
 			</script>
 			
