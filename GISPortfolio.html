@@ -59,6 +59,41 @@
 			<a href="https://imgur.com/kBMEqDW"><img src="https://i.imgur.com/kBMEqDW.jpg" title="Site Suitability Map" /></a>
 			<a href="https://imgur.com/cyW7wkL"><img src="https://i.imgur.com/cyW7wkL.jpg" title="ModelBuilder Visual Model" /></a> <!-- Update image?  Higher res may be good to make processes readable --> <!-- Figure out different image viewing methods -->
 			
+			 <!-- Trigger the Modal -->
+				<img id="myImg" src="https://i.imgur.com/kBMEqDW.jpg" alt="Riparian Woodrat Protected Areas: High Priority Locations" style="width:100%;max-width:300px">
+			<!-- Modal -->
+			<div id="myModal02" class="modal">
+
+				<span class="close">&times;</span>
+
+				<img class="modal-content" id="img02">
+
+				<div id="caption"></div>
+			</div> 
+			
+			<script>
+				// Get the modal
+				var modal = document.getElementById('myModal02');
+
+				// Get the image and insert it inside the modal - use its "alt" text as a caption
+				var img = document.getElementById('myImg');
+				var modalImg = document.getElementById("img02");
+				var captionText = document.getElementById("caption");
+				img.onclick = function(){
+				  modal.style.display = "block";
+				  modalImg.src = this.src;
+				  captionText.innerHTML = this.alt;
+				}
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				  modal.style.display = "none";
+				}
+			</script>
+			
 		<h3>Iterative Hydrologic Modeling via ModelBuilder(arcGIS)</h3>
 			<p>The position of rivers and other drainages are not fixed over time; erosional processes caused by moving water tend to reshape the course of rivers and streams over time.  Using next-neighbor analysis of topographic data within a watershed, a flow accumulation model of a region was developed, determining the likely locations of rivers within a region.  Erosional processes along these rivers were then simulated to produce new topographic data of the region.  ModelBuilder was used to iterate this process hundreds of times, producing a time-lapse simulation of the evolution of river systems in the region as erosion reshapes river boundaries.</p> <!-- Consider deleting -->
 	
