@@ -19,9 +19,9 @@
 			Utilizing multiple datasets of Yosemite National Park, such as maps of vegetation type and elevation, numerical values for site suitability were found for found.  I identified regions of the park suitable for flammulated owl breeding sites as those with site suitability in the 90th percentile of all park areas.  These selected survey areas are shown in the map below.</p> 
 			 <!-- Trigger the Modal -->
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-			<img class="myImg" src="https://i.imgur.com/FYEpzvD.jpg" alt="Flammulated Owl Survey Areas" style="width:100%;max-width:300px">
+			<img class="myImg" id ="img01" src="https://i.imgur.com/FYEpzvD.jpg" alt="Flammulated Owl Survey Areas" style="width:100%;max-width:300px">
 			<!-- Modal -->
-			<div id="myModal" class="modal">
+			<div id="myModal1" class="modal">
 
 				<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 
@@ -76,9 +76,9 @@
 		<h3>Using radial distances & travel time estimations to determine ideal police station closure locations in San Francisco</h3>
 			<p> As part of a GIS spatial analysis course, I was tasked with determining which police station in San Francisco would be the most logistically ideal to close down.  A network analysis of the road network of the city was used to determine the 'response time' of any given police station, defined as the time it would take for a police cruiser to travel from the station to the location in question.  This response time map, seen below, was combined with data on crime types and locations within the city over the past year to analyize the number of crimes each police station was in the ideal location to respond to.  This analysis led to the selection of a police station ideal for closure(pictured below), as the number of crimes it was ideally located to respond to was very low, due to adjacent police stations having overlapping response zones.</p>
 			<!-- Trigger the Modal -->
-			<img class="myImg" src="https://i.imgur.com/u2HZYUD.jpg" alt="San Francisco Police Stations: Closure Candidate Based on 4 Minute Response Time Overlap" style="width:100%;max-width:300px">
+			<img class="myImg" id="img02" src="https://i.imgur.com/u2HZYUD.jpg" alt="San Francisco Police Stations: Closure Candidate Based on 4 Minute Response Time Overlap" style="width:100%;max-width:300px">
 			<!-- Modal -->
-			<div id="myModal02" class="modal">
+			<div id="myModal2" class="modal">
 
 				<span class="close">&times;</span>
 
@@ -89,11 +89,11 @@
 			
 			<script>
 				// Get the modal
-				var modal = document.getElementById('myModal02');
+				var modal = document.getElementById('myModal2');
 
 				// Get the image and insert it inside the modal - use its "alt" text as a caption
 				var img = $('myImg');
-				var modalImg = document.getElementById("img01");
+				var modalImg = document.getElementById("img02");
 				var captionText = document.getElementById("caption");
 				img.onclick = function(){
 				  modal.style.display = "block";
