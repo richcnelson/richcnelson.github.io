@@ -18,7 +18,9 @@
 			These attributes defining breeding location of the flammulated owls were grouped together into a site suitability model, with numeric ranks being applied to different variables, namely elevation, TPI(topographical position index), aspect, vegetation type, cover percentage, and distance to roads or trails.<br>
 			Utilizing multiple datasets of Yosemite National Park, such as maps of vegetation type and elevation, numerical values for site suitability were found for found.  I identified regions of the park suitable for flammulated owl breeding sites as those with site suitability in the 90th percentile of all park areas.  These selected survey areas are shown in the map below.</p> 
 			 <!-- Trigger the Modal -->
-			<img id="myImg" src="https://i.imgur.com/FYEpzvD.jpg" alt="Flammulated Owl Survey Areas" style="width:100%;max-width:300px">
+			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			 
+			<img class="myImg" src="https://i.imgur.com/FYEpzvD.jpg" alt="Flammulated Owl Survey Areas" style="width:100%;max-width:300px">
 		
 			<!-- Modal -->
 		<div id="myModal" class="modal">
@@ -35,14 +37,15 @@
 			var modal = document.getElementById('myModal');
 
 			// Get the image and insert it inside the modal - use its "alt" text as a caption
-			var img = document.getElementById('myImg');
-			var modalImg = document.getElementById("img01");
+			var img = $('.myImg');
+			var modalImg = $("#img01");
 			var captionText = document.getElementById("caption");
-			img.onclick = function(){
-			  modal.style.display = "block";
-			  modalImg.src = this.src;
-			  captionText.innerHTML = this.alt;
-			}
+			$('.myImg').click(function(){
+				modal.style.display = "block";
+				var newSrc = this.src;
+				modalImg.attr('src', newSrc);
+				captionText.innerHTML = this.alt;
+			});
 
 			// Get the <span> element that closes the modal
 			var span = document.getElementsByClassName("close")[0];
@@ -73,7 +76,39 @@
 		<h3>Using radial distances & travel time estimations to determine ideal police station closure locations in San Francisco</h3>
 			<p> As part of a GIS spatial analysis course, I was tasked with determining which police station in San Francisco would be the most logistically ideal to close down.  A network analysis of the road network of the city was used to determine the 'response time' of any given police station, defined as the time it would take for a police cruiser to travel from the station to the location in question.  This response time map, seen below, was combined with data on crime types and locations within the city over the past year to analyize the number of crimes each police station was in the ideal location to respond to.  This analysis led to the selection of a police station ideal for closure(pictured below), as the number of crimes it was ideally located to respond to was very low, due to adjacent police stations having overlapping response zones.</p>
 			<!-- Trigger the Modal -->
-			<img class="myImg" id="img02" src="https://i.imgur.com/u2HZYUD.jpg" alt="San Francisco Police Stations: Closure Candidate Based on 4 Minute Response Time Overlap" style="width:100%;max-width:300px">
+			<img class="myImg" src="https://i.imgur.com/u2HZYUD.jpg" alt="San Francisco Police Stations: Closure Candidate Based on 4 Minute Response Time Overlap" style="width:100%;max-width:300px">
+			
+			<div id="myModal1" class="modal">
+
+			<span class="close">&times;</span>
+
+			<img class="modal-content" id="img01">
+
+			<div id="caption"></div>
+		</div> 
+		
+		<script>
+			// Get the modal
+			var modal = document.getElementById('myModal1');
+
+			// Get the image and insert it inside the modal - use its "alt" text as a caption
+			var img = $('.myImg');
+			var modalImg = $("#img01");
+			var captionText = document.getElementById("caption");
+			$('.myImg').click(function(){
+				modal.style.display = "block";
+				var newSrc = this.src;
+				modalImg.attr('src', newSrc);
+				captionText.innerHTML = this.alt;
+			});
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
 
 
 		<h3>Using LiDAR data to create topographic basemaps of field regions in Southern California</h3>
