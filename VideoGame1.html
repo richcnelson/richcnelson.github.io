@@ -29,14 +29,15 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('keydown', function (e) {
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = true;
+    })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.keys[e.keyCode] = false;
+    })
         },
-    window.addEventListener('keydown', function (e) {
-      myGameArea.keys = (myGameArea.keys || []);
-      myGameArea.keys[e.keyCode] = true;
-    })
-    window.addEventListener('keyup', function (e) {
-      myGameArea.keys[e.keyCode] = false;
-    })
+
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
@@ -87,6 +88,12 @@ function updateGameArea() {
         } 
     }
     myGameArea.clear();
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;
+    if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -1; }
+    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
+    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
+    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; }
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         x = myGameArea.canvas.width;
@@ -103,10 +110,6 @@ function updateGameArea() {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    if (myGameArea.keys && myGameArea.keys[37]) {redGamePiece.speedX = -1; }
-    if (myGameArea.keys && myGameArea.keys[39]) {redGamePiece.speedX = 1; }
-    if (myGameArea.keys && myGameArea.keys[38]) {redGamePiece.speedY = -1; }
-    if (myGameArea.keys && myGameArea.keys[40]) {redGamePiece.speedY = 1; }
     myGamePiece.newPos();    
     myGamePiece.update();
 }
@@ -137,11 +140,6 @@ function clearmove() {
     myGamePiece.speedY = 0; 
 }
 </script>
-<div style="text-align:center;width:480px;">
-  <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
-  <button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
-  <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
-  <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
-</div>
+
 </body>
 </html>
