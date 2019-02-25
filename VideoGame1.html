@@ -64,7 +64,7 @@ function component(width, height, color, x, y, type) {
     this.y = y;    
     this.update = function() {
         ctx = myGameArea.context;
-        if (type == "image") {
+        if (this.type == "image") {
           ctx.drawImage(this.image,
             this.x,
             this.y,
