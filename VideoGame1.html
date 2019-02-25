@@ -16,7 +16,9 @@ canvas {
 var myGamePiece;
 
 function startGame() {
-    myGamePiece = new component(40, 10, "green", 10, 120);
+    greenGamePiece = new component(40, 10, "green", 10, 120);
+    blueGamePiece = new component(40, 10, "blue", 100, 12);
+    redGamePiece = new component(5, 30, "red", 10, 80);
     myGameArea.start();
 }
 
@@ -48,10 +50,14 @@ function component(width, height, color, x, y) {
 
 function updateGameArea() {
     myGameArea.clear();
-    myGamePiece.x += 1;
-    myGamePiece.update();
+    greenGamePiece.x += 1;
+    blueGamePiece.x += 1;
+    redGamePiece.x += 1;
+    greenGamePiece.update();
+    blueGamePiece.update();
+    redGamePiece.update();
 }
 </script>
-<p>Look! A long red rectangle!</p>
+<p>Look!</p>
 </body>
 </html>
