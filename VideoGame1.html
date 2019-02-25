@@ -102,10 +102,10 @@ function updateGameArea() {
             myGamePiece.speed = 4;
         }
     }else{
-        if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= (myGamePiece.speed) + 0.1; }
-        if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed) -  0.1; }
+        if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= (myGamePiece.speed) + 0.2; }
+        if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed) -  0.2; }
     }
-    mySpeed.text = "Speed: " + myGamePiece.speed + "kph";
+    mySpeed.text = "Speed: " + myGamePiece.speed + " m/s";
     mySpeed.update();
     myGamePiece.newPos();
     myGamePiece.update();
