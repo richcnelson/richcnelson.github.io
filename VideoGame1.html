@@ -10,17 +10,15 @@ canvas {
 </style>
 </head>
 <body onload="startGame()">
-<body bgcolor="LightSlateGray">
-
 <script>
 
 var myGamePiece;
 var myObstacles = [];
-var myScore;
+var mySound;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "angry.gif", 10, 120, "image");
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    myGamePiece = new component(30, 30, "red", 10, 120);
+    mySound = new sound("bounce.mp3");
     myGameArea.start();
 }
 
@@ -33,29 +31,16 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
-        window.addEventListener('keydown', function (e) {
-            myGameArea.keys = (myGameArea.keys || []);
-            myGameArea.keys[e.keyCode] = true;
-    })
-        window.addEventListener('keyup', function (e) {
-            myGameArea.keys[e.keyCode] = false;
-    })
-        },
-
-    clear : function() {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
     stop : function() {
         clearInterval(this.interval);
+    },    
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
 
-function component(width, height, color, x, y, type) {
-    this.type= type;
-    if (type == "image") {
-        this.image = new Image();
-        this.image.src = color;
-    }
+function component(width, height, color, x, y) {
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -64,15 +49,8 @@ function component(width, height, color, x, y, type) {
     this.y = y;    
     this.update = function() {
         ctx = myGameArea.context;
-        if (type == "image") {
-          ctx.drawImage(this.image,
-            this.x,
-            this.y,
-            this.width, this.height);    
-        } else {
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-        }
     }
     this.newPos = function() {
         this.x += this.speedX;
@@ -95,30 +73,16 @@ function component(width, height, color, x, y, type) {
     }
 }
 
-function move(dir) {
-    myGamePiece.image.src = "smiley.gif";
-    if (dir == "up") {myGamePiece.speedY = -1; }
-    if (dir == "down") {myGamePiece.speedY = 1; }
-    if (dir == "left") {myGamePiece.speedX = -1; }
-    if (dir == "right") {myGamePiece.speedX = 1; }
-}
-
-
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
+            mySound.play();
             myGameArea.stop();
             return;
         } 
     }
     myGameArea.clear();
-    myGamePiece.speedX = 0;
-    myGamePiece.speedY = 0;
-    if (myGameArea.keys && myGameArea.keys[37]) {move('left'); }
-    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 1; }
-    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -1; }
-    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 1; }
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         x = myGameArea.canvas.width;
@@ -132,13 +96,30 @@ function updateGameArea() {
         myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -1;
+        myObstacles[i].x -= 1;
         myObstacles[i].update();
     }
-    myScore.text = "SCORE: " + myGameArea.frameNo;
-    myScore.update();
-    myGamePiece.newPos();    
+    if (myGameArea.keys && myGameArea.keys[37]) {moveLeft(); }
+    if (myGameArea.keys && myGameArea.keys[39]) {moveRight(); }
+    if (myGameArea.keys && myGameArea.keys[38]) {moveUp(); }
+    if (myGameArea.keys && myGameArea.keys[40]) {moveDown(); }
+    myGamePiece.newPos();
     myGamePiece.update();
+}
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
 }
 
 function everyinterval(n) {
@@ -167,10 +148,12 @@ function clearmove() {
     myGamePiece.speedY = 0; 
 }
 </script>
-
+<div style="text-align:center;width:480px;">
+  <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+  <button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
+  <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
+  <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+</div>
+<p>Turn up the volume. Do you hear a "dunk" when the red square hits an obstacle?</p>
 </body>
-
-    <a href="./ProgPortfilio.html"><p>Go back</p></a>
-    <a href="./index.html"><p>Back to main page</p></a>
-
 </html>
