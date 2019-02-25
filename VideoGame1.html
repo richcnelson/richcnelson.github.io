@@ -13,12 +13,16 @@ canvas {
 <body bgcolor="LightSlateGray">
 <script>
 
-var myGamePiece;
+var redGamePiece;
+var myObstacles = [];
+var blueGamePiece;
+var greenGamePiece;
 
 function startGame() {
     greenGamePiece = new component(40, 10, "green", 10, 120);
     blueGamePiece = new component(40, 10, "blue", 100, 12);
-    redGamePiece = new component(30, 30, "red", 10, 80); 
+    redGamePiece = new component(30, 30, "red", 10, 80);
+    myObstacle = new component(10, 200, "green", 300, 120) 
     myGameArea.start();
 }
 
@@ -33,6 +37,10 @@ var myGameArea = {
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    stop : function() {
+        clearInterval(this.interval);
+        }
+    }
     window.addEventListener('keydown', function (e) {
       myGameArea.keys = (myGameArea.keys || []);
       myGameArea.keys[e.keyCode] = true;
@@ -41,6 +49,10 @@ var myGameArea = {
         myGameArea.keys[e.keyCode] = false;
     })
     }
+
+function everyinterval(n) {
+  if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+  return false;
 }
 
 function component(width, height, color, x, y) {
@@ -59,24 +71,65 @@ function component(width, height, color, x, y) {
         this.x += this.speedX;
         this.y += this.speedY;
     }
+    this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) ||
+        (mytop > otherbottom) ||
+        (myright < otherleft) ||
+        (myleft > otherright)) {
+          crash = false;
+        }
+        return crash;
+      }
 }
 
 function updateGameArea() {
+  var x, y;
+  for (i = 0; i < myObstacles.length; i += 1) {
+    if (myGamePiece.crashWith(myObstacles[i])) {
+      myGameArea.stop();
+      return;
+    }
+  }
+  myGameArea.clear();
+  myGameArea.frameNo += 1;
+  if (myGameArea.frameNo == 1 || everyinterval(150)) {
+    x = myGameArea.canvas.width;
+    y = myGameArea.canvas.height - 200
+    myObstacles.push(new component(10, 200, "green", x, y));
+  }
+  for (i = 0; i < myObstacles.length; i += 1) {
+    myObstacles[i].x += -1;
+    myObstacles[i].update();
+  }
+
     myGameArea.clear();
     greenGamePiece.x += 1;
     blueGamePiece.x += 1;
     blueGamePiece.y += 1;
     redGamePiece.speedX = 0;
     redGamePiece.speedY = 0;
+
     if (myGameArea.keys && myGameArea.keys[37]) {redGamePiece.speedX = -1; }
     if (myGameArea.keys && myGameArea.keys[39]) {redGamePiece.speedX = 1; }
     if (myGameArea.keys && myGameArea.keys[38]) {redGamePiece.speedY = -1; }
     if (myGameArea.keys && myGameArea.keys[40]) {redGamePiece.speedY = 1; }
+
     redGamePiece.newPos();
     greenGamePiece.update();
     blueGamePiece.update();
     redGamePiece.update();
+    myObstacle.update();
 }
+
 
 function moveup() {
   redGamePiece.speedY -= 1;
