@@ -10,6 +10,7 @@ canvas {
 </style>
 </head>
 <body onload="startGame()">
+<body bgcolor="LightSlateGray">
 
 <script>
 var myGamePiece;
@@ -22,8 +23,8 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.width = 720;
+        this.canvas.height = 480;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -77,14 +78,14 @@ function updateGameArea() {
     myGamePiece.speed = 0;
     if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = -1; }
     if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1; }
-    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= 1; }
-    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= -1; }
+    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= (myGamePiece.speed) + 0.1; }
+    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed - 0.1); }
     myGamePiece.newPos();
     myGamePiece.update();
 }
 </script>
 
-<p>Make sure the gamearea has focus, and use the arrow keys to move the red square around.</p>
+<p>Zoom Zoom.</p>
 
 </body>
 </html>
