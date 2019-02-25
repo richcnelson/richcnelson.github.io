@@ -20,27 +20,15 @@
 			 <!-- Trigger the Modal -->
 			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			 
-			<img class="myImg" id="1" src="https://i.imgur.com/FYEpzvD.jpg" alt="Flammulated Owl Survey Areas" style="width:100%;max-width:300px" data-toggle="modal" data-target="#myModal">
+			<img class="myImg" id="1" src="https://i.imgur.com/FYEpzvD.jpg" alt="Flammulated Owl Survey Areas" style="width:100%;max-width:300px" data-toggle="modal" data-target="#modal1">
 		
-			<!-- Modal -->
-			<div id="myModal" class="modal">
-
-			<span class="close">&times;</span>
-
-			<img class="modal-content" id="img01">
-
-			<div id="caption"></div>
-		</div> 
-		
-		
-		<script>
-			(document).ready(function () {
-									$('#myModal').on('show.bs.modal', function (e) {
-										var image = $(e.relatedTarget).attr('src');
-										$(".modal-content").attr("src", image);
-									});
-							});
-		</script>
+			<div id="content">
+					<p>This is the content-container</p>
+					<a href="#modal1">Open first modal</a><br>
+					<a href="#modal2">Open second modal</a>
+				  <div id="modal1"><a href="#">Close</a>This is the first modal</div>
+				  <div id="modal2"><a href="#">Close</a>This is the second modal</div>
+			</div>
 			
 		<h3>Determining the ideal locations for Protected Habitats of the Riparian Woodrat</h3>
 			<p>As part of a university GIS course, I was tasked with finding the ideal habitat for the Riparian Woodrat within a region of California forest, in order to earmark ideal regions for protection.  In order to do this, I conducted a site suitability analysis for the riparian woodrat, using known factors about its desired habitat location, similar to the above flammulated owl site suitability analysis.  To better allow for easy modification, visualization, and reproduction of the final model, the model was built in ModelBuilder.  The final produced map, as well as the ModelBuilder workflow used for said map, are included below.</p>
