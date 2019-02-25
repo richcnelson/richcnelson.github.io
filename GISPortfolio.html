@@ -20,15 +20,39 @@
 			 <!-- Trigger the Modal -->
 			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			 
-			<a href="#modal1"><img class="myImg" id="1" src="https://i.imgur.com/FYEpzvD.jpg" alt="Flammulated Owl Survey Areas" style="width:100%;max-width:300px" data-toggle="modal" data-target="#modal1"></a>
+			<img id="myImg" src="https://i.imgur.com/FYEpzvD.jpg" alt="Me!" style="width:100%;max-width:300px">
 		
-			<div id="content">
-					<p>This is the content-container</p>
-					<a href="#modal1">Open first modal</a><br>
-					<a href="#modal2">Open second modal</a>
-				  <div id="modal1"><a href="#">Close</a><img class ="myImg" id="1"></div>
-				  <div id="modal2"><a href="#">Close</a><img id="2"></div>
-			</div>
+			<<div id="myModal" class="modal">
+
+				<span class="close">&times;</span>
+
+				<img class="modal-content" id="img01">
+
+				<div id="caption"></div>
+			</div> 
+		
+			<script>
+				// Get the modal
+				var modal = document.getElementById('myModal');
+
+				// Get the image and insert it inside the modal - use its "alt" text as a caption
+				var img = document.getElementById('myImg');
+				var modalImg = document.getElementById("img01");
+				var captionText = document.getElementById("caption");
+				img.onclick = function(){
+				  modal.style.display = "block";
+				  modalImg.src = this.src;
+				  captionText.innerHTML = this.alt;
+				}
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				  modal.style.display = "none";
+				}
+			</script>
 			
 		<h3>Determining the ideal locations for Protected Habitats of the Riparian Woodrat</h3>
 			<p>As part of a university GIS course, I was tasked with finding the ideal habitat for the Riparian Woodrat within a region of California forest, in order to earmark ideal regions for protection.  In order to do this, I conducted a site suitability analysis for the riparian woodrat, using known factors about its desired habitat location, similar to the above flammulated owl site suitability analysis.  To better allow for easy modification, visualization, and reproduction of the final model, the model was built in ModelBuilder.  The final produced map, as well as the ModelBuilder workflow used for said map, are included below.</p>
