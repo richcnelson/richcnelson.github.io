@@ -14,9 +14,11 @@ canvas {
 
 <script>
 var myGamePiece;
+var mySpeed;
 
 function startGame() {
     myGamePiece = new component(30, 50, "red", 225, 225);
+    mySpeed = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
 }
 
@@ -61,8 +63,14 @@ function component(width, height, color, x, y, type) {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
+        if (this.type == "text") {
+        ctx.font = this.width + " " + this.height;
+        ctx.fillStyle = color;
+        ctx.fillText(this.text, this.x, this.y);
+        } else {
         ctx.fillStyle = color;
         ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+        }
         ctx.restore();    
     }
     this.newPos = function() {
@@ -80,6 +88,8 @@ function updateGameArea() {
     if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1; }
     if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= (myGamePiece.speed) + 0.1; }
     if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed) - 0.1; }
+    mySpeed.text = "Speed: " + myGamePiece.speed + "kph";
+    mySpeed.update();
     myGamePiece.newPos();
     myGamePiece.update();
 }
