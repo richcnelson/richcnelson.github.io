@@ -24,17 +24,20 @@
 		
 			<!-- Modal -->
 			<div id="myModal" class="modal">
-					<div class="modal-content">
-							<img class="img-responsive" src="" />
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-			</div>
+
+			<span class="close">&times;</span>
+
+			<img class="modal-content" id="img01">
+
+			<div id="caption"></div>
+		</div> 
+		
 		
 		<script>
 			(document).ready(function () {
 									$('#myModal').on('show.bs.modal', function (e) {
 										var image = $(e.relatedTarget).attr('src');
-										$(".img-responsive").attr("src", image);
+										$(".modal-content").attr("src", image);
 									});
 							});
 		</script>
