@@ -79,13 +79,13 @@ function updateGameArea() {
     if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = -1; }
     if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1; }
     if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= (myGamePiece.speed) + 0.1; }
-    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed - 0.1); }
+    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed) - 0.1; }
     myGamePiece.newPos();
     myGamePiece.update();
 }
 </script>
 
-<p>Zoom Zoom.</p>
+<p>Zoom Zoom</p>
 
 </body>
 </html>
