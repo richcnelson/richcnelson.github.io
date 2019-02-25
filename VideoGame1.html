@@ -14,6 +14,17 @@ canvas {
 
 function startGame() {
     myGameArea.start();
+	myGamePiece = new componen(30,30, "red", 10, 120);
+}
+
+function component(width, height, color, x, y) {
+	this.width = width;
+	this.height = height;
+	this.x = x;
+	thix.y = y;
+	ctx = myGameArea.context;
+	ctx.fillstyle = color;
+	ctx.fillRect(this.x, this.y, this.width, this.height);
 }
 
 var myGameArea = {
