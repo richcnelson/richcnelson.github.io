@@ -65,6 +65,12 @@ function updateGameArea() {
     greenGamePiece.x += 1;
     blueGamePiece.x += 1;
     blueGamePiece.y += 1;
+    redGamePiece.speedX = 0;
+    redGamePiece.speedY = 0;
+    if (myGameArea.key && myGameArea.key == 37) {redGamePiece.speedX = -1; }
+    if (myGameArea.key && myGameArea.key == 39) {redGamePiece.speedX = 1; }
+    if (myGameArea.key && myGameArea.key == 38) {redGamePiece.speedY = -1; }
+    if (myGameArea.key && myGameArea.key == 40) {redGamePiece.speedY = 1; }
     redGamePiece.newPos();
     greenGamePiece.update();
     blueGamePiece.update();
