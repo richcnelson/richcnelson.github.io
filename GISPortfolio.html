@@ -22,16 +22,17 @@
 			 
 			<img id="myImg" src="https://i.imgur.com/FYEpzvD.jpg" alt="Me!" style="width:100%;max-width:300px">
 		
+		
+			<!-- Modal -->
 			<div id="myModal" class="modal">
-				
-				<span class="close" ><a href="#close">&times;</span>
+
+				<span class="close">&times;</span>
 
 				<img class="modal-content" id="img01">
 
 				<div id="caption"></div>
-				
 			</div> 
-		
+			
 			<script>
 				// Get the modal
 				var modal = document.getElementById('myModal');
@@ -54,6 +55,7 @@
 				  modal.style.display = "none";
 				}
 			</script>
+	
 			</a>
 		<h3>Determining the ideal locations for Protected Habitats of the Riparian Woodrat</h3>
 			<p>As part of a university GIS course, I was tasked with finding the ideal habitat for the Riparian Woodrat within a region of California forest, in order to earmark ideal regions for protection.  In order to do this, I conducted a site suitability analysis for the riparian woodrat, using known factors about its desired habitat location, similar to the above flammulated owl site suitability analysis.  To better allow for easy modification, visualization, and reproduction of the final model, the model was built in ModelBuilder.  The final produced map, as well as the ModelBuilder workflow used for said map, are included below.</p>
@@ -77,40 +79,7 @@
 			<!-- Trigger the Modal -->
 			<img id="myImg1" src="https://i.imgur.com/u2HZYUD.jpg" alt="Me!" style="width:100%;max-width:300px">
 			
-			<div id="myModal1" class="modal">
-
-				<span class="close">&times;</span>
-
-				<img class="modal-content" id="img02">
-
-				<div id="caption1"></div>
-			</div> 
-		
-			<script>
-				// Get the modal
-				var modal = document.getElementById('myModal1');
-
-				// Get the image and insert it inside the modal - use its "alt" text as a caption
-				var img = document.getElementById('myImg1');
-				var modalImg = document.getElementById("img02");
-				var captionText = document.getElementById("caption1");
-				img.onclick = function(){
-				  modal.style.display = "block";
-				  modalImg.src = this.src;
-				  captionText.innerHTML = this.alt;
-				}
-
-				// Get the <span> element that closes the modal
-				var span = document.getElementsByClassName("close")[0];
-
-				// When the user clicks on <span> (x), close the modal
-				span.onclick = function() {
-				  modal.style.display = "none";
-				}
-			</script>
 			
-		
-		</script>
 
 		<h3>Using LiDAR data to create topographic basemaps of field regions in Southern California</h3>
 			<p>As part of preparation for a capstone geology field camp, I was tasked with designing topographic, satellite image, hillshade, and LiDAR basemaps of field regions in Southeastern California.  Using DTMs, LiDAR images, and multi-band satallite imagery, I produced hillshade maps, created topographic lines(interval 5 meters), and created false-color satellite maps to better reveal geologic formations in the region.  These maps were all given the proper map elements(scales, north arrow, etc.) and used in conjunction with other maps in field camp to aid in production of the capstone project.  </p> <!-- Can't really post images for this, consider deleting -->
