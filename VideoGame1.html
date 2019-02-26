@@ -82,7 +82,18 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     myGameArea.clear();
-    myGamePiece.moveAngle = 0;
+
+    if (Math.abs(myGamePiece.moveAngle) < 0.5){
+        myGamePiece.moveAngle = 0;
+    } else {
+
+        if (myGamePiece.moveAngle < 0){
+            myGamePiece.moveAngle = (myGamePiece.moveAngle + 0.5);
+        } else{
+            myGamePiece.moveAngle = (myGamePiece.moveAngle - 0.5);
+        }
+    }
+
     if (Math.abs(myGamePiece.speed) < 0.06) {
         myGamePiece.speed = 0;
     }else{
@@ -95,6 +106,7 @@ function updateGameArea() {
 
     if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = -1.5; }
     if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1.5; }
+
     if (Math.abs(myGamePiece.speed) >= 4) {
         if (myGamePiece.speed < 0) {
             myGamePiece.speed = -4;
@@ -108,9 +120,11 @@ function updateGameArea() {
 
     mySpeed.text = "Speed: " + (Math.floor(myGamePiece.speed * 10) / 10) + " m/s";
     mySpeed.update();
+
     myGamePiece.newPos();
     myGamePiece.update();
-    }
+
+}
 </script>
 
 <p>Zoom Zoom</p>
