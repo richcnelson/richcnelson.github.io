@@ -104,8 +104,8 @@ function updateGameArea() {
         myGamePiece.speed = (myGamePiece.speed - 0.03); }
     }
 
-    if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = -1.5; }
-    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1.5; }
+    if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = (myGamePiece.moveAngle) - 1.5 ; }
+    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = (myGamePiece.moveAngle) + 1.5; }
 
     if (Math.abs(myGamePiece.speed) >= 4) {
         if (myGamePiece.speed < 0) {
