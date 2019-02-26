@@ -83,6 +83,9 @@ function component(width, height, color, x, y, type) {
 function updateGameArea() {
     myGameArea.clear();
     myGamePiece.moveAngle = 0;
+
+    mySpeed.text = "Speed: " + (Math.floor(myGamePiece.speed * 10) / 10) + " m/s";
+
     if (Math.abs(myGamePiece.speed) < 0.06) {
         myGamePiece.speed = 0;
     }else{
@@ -105,7 +108,7 @@ function updateGameArea() {
         if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= (myGamePiece.speed) + 0.2; }
         if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed) -  0.2; }
     }
-    mySpeed.text = "Speed: " + (Math.floor(myGamePiece.speed * 10) / 10) + " m/s";
+
     mySpeed.update();
     myGamePiece.newPos();
     myGamePiece.update();
