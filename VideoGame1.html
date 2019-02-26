@@ -120,10 +120,10 @@ function updateGameArea() {
         }else{
             myGamePiece.speed = 4;
         }
-    }else{
+    }
         if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= (myGamePiece.speed) + 0.2; }
         if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= (myGamePiece.speed) -  0.1; }
-    }
+    
 
     mySpeed.text = "Speed: " + (Math.floor((myGamePiece.speed) * 10) / 10) + " m/s";
     mySpeed.update();
